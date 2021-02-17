@@ -1,8 +1,8 @@
 import discord
 from misc import list_data,save_data,clear_data
+import os
 
 client = discord.Client()
-saves_dir = 'channel_saves/'
 
 @client.event
 async def on_ready():
@@ -13,8 +13,7 @@ async def on_message(message):
     if message.author == client.user:
       return
     elif message.content.startswith('$bookmarks'):
-      channel_id = message.channel.id
-      result = list_data(channel_id)
+      result = list_data(message)
       if result:
         await message.channel.send(result)
       else:

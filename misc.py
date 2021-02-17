@@ -2,6 +2,8 @@ import os
 import json
 from datetime import datetime
 
+saves_dir = 'channel_saves/'
+
 def save_data(message):
     channel_id = message.channel.id
     filename = saves_dir + 'c' + str(channel_id) + '.json'
@@ -40,7 +42,8 @@ def save_data(message):
     json_file.close()
     return True
 
-def list_data(channel_id):
+def list_data(message):
+    channel_id = message.channel.id
     filename = saves_dir +'c'+str(channel_id)+'.json'
     if not os.path.exists(saves_dir):
         os.mkdir(saves_dir)
